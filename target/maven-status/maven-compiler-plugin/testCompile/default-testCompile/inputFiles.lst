@@ -1,0 +1,11 @@
+/Users/mono/Downloads/bookstore-back-main/src/test/java/co/edu/uniandes/dse/bookstore/service/AuthorBookServiceTest.java
+/Users/mono/Downloads/bookstore-back-main/src/test/java/co/edu/uniandes/dse/bookstore/service/AuthorServiceTest.java
+/Users/mono/Downloads/bookstore-back-main/src/test/java/co/edu/uniandes/dse/bookstore/service/BookAuthorServiceTest.java
+/Users/mono/Downloads/bookstore-back-main/src/test/java/co/edu/uniandes/dse/bookstore/service/BookEditorialServiceTest.java
+/Users/mono/Downloads/bookstore-back-main/src/test/java/co/edu/uniandes/dse/bookstore/service/BookServiceTest.java
+/Users/mono/Downloads/bookstore-back-main/src/test/java/co/edu/uniandes/dse/bookstore/service/EditorialBookServiceTest.java
+/Users/mono/Downloads/bookstore-back-main/src/test/java/co/edu/uniandes/dse/bookstore/service/EditorialServiceTest.java
+/Users/mono/Downloads/bookstore-back-main/src/test/java/co/edu/uniandes/dse/bookstore/service/OrganizationServiceTest.java
+/Users/mono/Downloads/bookstore-back-main/src/test/java/co/edu/uniandes/dse/bookstore/service/PrizeAuthorServiceTest.java
+/Users/mono/Downloads/bookstore-back-main/src/test/java/co/edu/uniandes/dse/bookstore/service/PrizeServiceTest.java
+/Users/mono/Downloads/bookstore-back-main/src/test/java/co/edu/uniandes/dse/bookstore/service/ReviewServiceTest.java

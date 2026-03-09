@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Nunito', sans-serif !important;
+  background: #f0f2ff;
+  min-height: 100vh;
+  padding: 40px 24px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(ellipse at 20% 20%, #c084fc55 0%, transparent 50%),
+              radial-gradient(ellipse at 80% 10%, #818cf855 0%, transparent 50%),
+              radial-gradient(ellipse at 60% 80%, #f0abfc44 0%, transparent 50%),
+              radial-gradient(ellipse at 10% 70%, #67e8f944 0%, transparent 50%);
+  animation: bgMove 12s ease-in-out infinite alternate;
+  z-index: -1;
+}
+
+@keyframes bgMove {
+  0%   { transform: translate(0, 0) rotate(0deg); }
+  100% { transform: translate(30px, 20px) rotate(3deg); }
+}

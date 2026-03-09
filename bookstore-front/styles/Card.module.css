@@ -1,0 +1,71 @@
+.card {
+  font-family: "Nunito", sans-serif !important;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 28px;
+  margin: 16px 0;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  border-top: 4px solid #6C63FF;
+  max-width: 520px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+}
+
+.card h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 10px;
+}
+
+.card p {
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 4px 0;
+}
+
+.card img {
+  border-radius: 14px;
+  margin: 14px 0;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.button {
+  font-family: "Nunito", sans-serif !important;
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+  letter-spacing: 0.5px;
+}
+
+.button:hover {
+  opacity: 0.88;
+  transform: scale(1.05);
+}
+
+.edit {
+  background: linear-gradient(135deg, #6C63FF, #48c6ef);
+  color: white;
+}
+
+.delete {
+  background: linear-gradient(135deg, #ff6b6b, #ee0979);
+  color: white;
+}
