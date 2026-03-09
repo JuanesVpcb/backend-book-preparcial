@@ -1,10 +1,10 @@
-# 📚 Bookstore Backend/Frontend
+# Bookstore Backend/Frontend
 
 La aplicación funciona como un CRUD de autores donde el backend en Spring Boot expone una API REST en http://localhost:8080/api/authors y el frontend en Next.js consume esa API para listar, crear, editar y eliminar autores, gestionando el estado de manera global con un Context de React. 
 
 ---
 
-## 🎯 Objetivo
+## Objetivo
 
 Proveer una interfaz web moderna para gestionar **autores** de una librería, permitiendo:
 
@@ -15,7 +15,7 @@ Proveer una interfaz web moderna para gestionar **autores** de una librería, pe
 
 ---
 
-## 🛠️ Tecnologías Utilizadas
+## Tecnologías Utilizadas
 
 | Tecnología | Uso |
 |------------|-----|
@@ -27,7 +27,7 @@ Proveer una interfaz web moderna para gestionar **autores** de una librería, pe
 
 ---
 
-## 📁 Estructura del Proyecto
+## Estructura del Proyecto
 
 ```
 bookstore-front/
@@ -52,7 +52,7 @@ bookstore-front/
 
 ---
 
-## 🚀 ¿Cómo correr el proyecto?
+## ¿Cómo correr el proyecto?
 
 ### Requisitos previos
 
@@ -71,6 +71,7 @@ docker run -it --name bookstore-back-app -p 8080:8080 bookstore-back-image
 ```
 
 Verifica que el backend esté corriendo:
+
 ```bash
 curl http://localhost:8080/api/authors
 ```
@@ -99,6 +100,73 @@ npm start
 
 ---
 
+## Guía de ejecución
+
+### Preparación del entorno
+
+1. Tener Java 17+ y Maven Wrapper disponibles para backend.
+2. Tener Node.js 18+ y npm para frontend.
+3. Levantar backend en `http://localhost:8080` (con Docker o ejecución local).
+4. Instalar dependencias frontend:
+
+```bash
+cd bookstore-front
+npm install
+```
+
+### Ejecutar suite de pruebas
+
+Pruebas backend (JUnit/Spring):
+
+```bash
+./mvnw test
+```
+
+Pruebas frontend (Jest):
+
+```bash
+cd bookstore-front
+npm test
+```
+
+Ejecución focalizada de pruebas de formulario:
+
+```bash
+cd bookstore-front
+npx jest test/AuthorForm.test.js --runInBand
+```
+
+### Ejecución de la aplicación completa
+
+Backend:
+
+```bash
+./mvnw spring-boot:run
+```
+
+Frontend (desarrollo):
+
+```bash
+cd bookstore-front
+npm run dev
+```
+
+Frontend (producción):
+
+```bash
+cd bookstore-front
+npm run build
+npm start
+```
+
+---
+
+## Reporte de Cambios
+
+La persistencia entre rutas se resolvió centralizando las operaciones de autores en `AuthorsContext`, de forma que `/crear`, `/editar/[id]` y `/authors` consumen el mismo estado global y, tras cada operación `POST/PUT/DELETE`, se refresca el listado desde la API para mantener consistencia con el backend. En paralelo, la lógica de filtrado se integró directamente en la página `authors` aplicando métodos nativos de JavaScript sobre el arreglo (`filter` + `includes`) con comparación case-sensitive y un mensaje explícito cuando no hay coincidencias.
+
+---
+
 ## 🔗 Conexión con el Backend
 
 El frontend se comunica con el backend en:
@@ -120,13 +188,15 @@ Esto está configurado en `context/AuthorsContext.js`. Asegúrate de que el back
 
 ## ⚠️ Problemas Comunes
 
-**Error: container name already in use**
+### Error: container name already in use
+
 ```bash
 docker rm -f bookstore-back-app
 docker run -it --name bookstore-back-app -p 8080:8080 bookstore-back-image
 ```
 
-**Error: could not find a production build**
+### Error: could not find a production build
+
 ```bash
 npm run build
 npm start

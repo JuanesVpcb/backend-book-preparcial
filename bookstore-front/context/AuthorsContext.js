@@ -6,11 +6,23 @@ const API_URL = "http://localhost:8080/api/authors";
 export function AuthorsProvider({ children }) {
   const [authors, setAuthors] = useState([]);
 
+  const fetchAuthors = async () => {
+    try {
+      const response = await fetch(API_URL);
+
+      if (!response.ok) {
+        throw new Error(`Error HTTP ${response.status} al obtener autores`);
+      }
+
+      const author_list = await response.json();
+      setAuthors(Array.isArray(author_list) ? author_list : []);
+    } catch (error) {
+      console.error("Error al obtener autores:", error);
+    }
+  };
+
   useEffect(() => {
-    fetch(API_URL)
-      .then((response) => response.json())
-      .then((author_list) => setAuthors(author_list))
-      .catch((error) => console.error("Error al obtener autores:", error));
+    fetchAuthors();
   }, []);
 
   const addAuthor = async (author_payload) => {
@@ -19,8 +31,12 @@ export function AuthorsProvider({ children }) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(author_payload),
     });
-    const new_author = await response.json();
-    setAuthors([...authors, new_author]);
+
+    if (!response.ok) {
+      throw new Error(`Error HTTP ${response.status} al crear autor`);
+    }
+
+    await fetchAuthors();
   };
 
   const updateAuthor = async (author_id, author_payload) => {
@@ -29,13 +45,22 @@ export function AuthorsProvider({ children }) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(author_payload),
     });
-    const updated_author = await response.json();
-    setAuthors(authors.map((author_item) => (author_item.id === author_id ? updated_author : author_item)));
+
+    if (!response.ok) {
+      throw new Error(`Error HTTP ${response.status} al actualizar autor`);
+    }
+
+    await fetchAuthors();
   };
 
   const deleteAuthor = async (author_id) => {
-    await fetch(`${API_URL}/${author_id}`, { method: "DELETE" });
-    setAuthors(authors.filter((author_item) => author_item.id !== author_id));
+    const response = await fetch(`${API_URL}/${author_id}`, { method: "DELETE" });
+
+    if (!response.ok) {
+      throw new Error(`Error HTTP ${response.status} al eliminar autor`);
+    }
+
+    await fetchAuthors();
   };
 
   return (

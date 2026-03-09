@@ -99,13 +99,13 @@ describe("Componente AuthorForm", () => {
     await user.click(name_input);
     await user.tab();
 
-    expect(screen.getByRole("alert")).toBeInTheDocument();
+    expect(screen.getByRole("alert")).toBeInTheDocument(); // Mensaje de error presente
 
     await user.type(name_input, "Isabel Allende");
     await user.type(birth_date_input, "1942-08-02");
     await user.type(description_input, "Escritora chilena.");
     await user.type(image_input, "https://example.com/allende.jpg");
-    
+
     await waitFor(() => {
       expect(screen.queryByRole("alert")).not.toBeInTheDocument();
       expect(submit_button).toBeEnabled();

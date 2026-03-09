@@ -9,7 +9,7 @@ export default function AuthorsPage() {
   const [searchTerm, setSearchTerm] = useState("");
 
   const filteredAuthors = authors.filter((author_item) =>
-    author_item.name.toLowerCase().includes(searchTerm.toLowerCase())
+    (author_item.name || "").includes(searchTerm)
   );
 
   return (
