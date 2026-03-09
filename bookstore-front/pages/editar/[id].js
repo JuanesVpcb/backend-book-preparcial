@@ -1,12 +1,12 @@
 import { useRouter } from "next/router";
-import useAuthors from "../../hooks/useAuthors";
+import { useAuthorsContext } from "../../context/AuthorsContext";
 import AuthorForm from "../../components/AuthorForm";
 import styles from "../../styles/Form.module.css";
 
 export default function EditarAutor() {
   const router = useRouter();
   const { id } = router.query;
-  const { authors, updateAuthor } = useAuthors();
+  const { authors, updateAuthor } = useAuthorsContext();
   const author_to_edit = authors.find((author_item) => author_item.id === parseInt(id, 10));
 
   const handleSubmit = async (author_payload) => {

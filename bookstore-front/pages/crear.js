@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
-import useAuthors from "../hooks/useAuthors";
+import { useAuthorsContext } from "../context/AuthorsContext";
 import AuthorForm from "../components/AuthorForm";
 
 export default function CrearAutor() {
-  const { addAuthor } = useAuthors();
+  const { addAuthor } = useAuthorsContext();
   const router = useRouter();
 
   const handleSubmit = async (author_payload) => {

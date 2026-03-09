@@ -5,18 +5,38 @@ export default function AuthorForm({ initialData, onSubmit }) {
   const [form_state, setFormState] = useState(
     initialData || { name: "", description: "", birthDate: "", image: "" }
   );
+  const [form_error, setFormError] = useState("");
+
+  const hasMissingRequiredFields = (state) =>
+    !state.name || !state.birthDate || !state.description;
 
   const handleChange = (event) => {
-    setFormState({ ...form_state, [event.target.name]: event.target.value });
+    const next_state = { ...form_state, [event.target.name]: event.target.value };
+    setFormState(next_state);
+
+    if (form_error && !hasMissingRequiredFields(next_state)) {
+      setFormError("");
+    }
+  };
+
+  const handleBlur = () => {
+    if (hasMissingRequiredFields(form_state)) {
+      setFormError("Completa los campos obligatorios.");
+    }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (!form_state.name || !form_state.birthDate || !form_state.description) return;
+    if (hasMissingRequiredFields(form_state)) {
+      setFormError("Completa los campos obligatorios.");
+      return;
+    }
+
+    setFormError("");
     onSubmit(form_state);
   };
 
-  const is_disabled = !form_state.name || !form_state.birthDate || !form_state.description;
+  const is_disabled = hasMissingRequiredFields(form_state);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
@@ -29,6 +49,7 @@ export default function AuthorForm({ initialData, onSubmit }) {
           placeholder="Nombre"
           value={form_state.name}
           onChange={handleChange}
+          onBlur={handleBlur}
           required
         />
       </div>
@@ -42,6 +63,7 @@ export default function AuthorForm({ initialData, onSubmit }) {
           className={styles.input}
           value={form_state.birthDate}
           onChange={handleChange}
+          onBlur={handleBlur}
           required
         />
       </div>
@@ -55,6 +77,7 @@ export default function AuthorForm({ initialData, onSubmit }) {
           placeholder="URL Imagen"
           value={form_state.image}
           onChange={handleChange}
+          onBlur={handleBlur}
         />
       </div>
 
@@ -67,9 +90,12 @@ export default function AuthorForm({ initialData, onSubmit }) {
           placeholder="Descripción"
           value={form_state.description}
           onChange={handleChange}
+          onBlur={handleBlur}
           required
         />
       </div>
+
+      {form_error && <p role="alert">{form_error}</p>}
 
       <button type="submit" className={styles.button} disabled={is_disabled}>
         Guardar
