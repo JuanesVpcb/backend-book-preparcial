@@ -35,3 +35,27 @@
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(108, 99, 255, 0.4);
 }
+
+.searchContainer {
+  margin-bottom: 20px;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #cfd4dc;
+  border-radius: 10px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.searchInput:focus {
+  border-color: #6c63ff;
+  box-shadow: 0 0 0 2px rgba(108, 99, 255, 0.2);
+}
+
+.noResultsMessage {
+  margin-top: 16px;
+  color: #5a6270;
+  font-size: 0.98rem;
+}
