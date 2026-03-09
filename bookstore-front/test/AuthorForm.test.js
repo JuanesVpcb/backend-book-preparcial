@@ -53,6 +53,8 @@ describe("Componente AuthorForm", () => {
     await user.click(submit_button);
 
     expect(mock_submit).not.toHaveBeenCalled();
+    expect(screen.getByRole("alert")).toHaveTextContent(/Faltan campos obligatorios/i);
+    expect(submit_button).toBeDisabled();
   });
 
   test("Enviar un form con todos los campos completos, verificando que se llame a la función de envío", async () => {

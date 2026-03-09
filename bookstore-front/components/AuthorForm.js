@@ -7,8 +7,22 @@ export default function AuthorForm({ initialData, onSubmit }) {
   );
   const [form_error, setFormError] = useState("");
 
-  const hasMissingRequiredFields = (state) =>
-    !state.name || !state.birthDate || !state.description;
+  const getMissingRequiredFields = (state) => {
+    const missing_fields = [];
+
+    if (!state.name) missing_fields.push("Nombre");
+    if (!state.birthDate) missing_fields.push("Fecha de nacimiento");
+    if (!state.description) missing_fields.push("Descripción");
+
+    return missing_fields;
+  };
+
+  const hasMissingRequiredFields = (state) => getMissingRequiredFields(state).length > 0;
+
+  const buildValidationMessage = (state) => {
+    const missing_fields = getMissingRequiredFields(state);
+    return `Faltan campos obligatorios: ${missing_fields.join(", ")}.`;
+  };
 
   const handleChange = (event) => {
     const next_state = { ...form_state, [event.target.name]: event.target.value };
@@ -21,14 +35,14 @@ export default function AuthorForm({ initialData, onSubmit }) {
 
   const handleBlur = () => {
     if (hasMissingRequiredFields(form_state)) {
-      setFormError("Completa los campos obligatorios.");
+      setFormError(buildValidationMessage(form_state));
     }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (hasMissingRequiredFields(form_state)) {
-      setFormError("Completa los campos obligatorios.");
+      setFormError(buildValidationMessage(form_state));
       return;
     }
 

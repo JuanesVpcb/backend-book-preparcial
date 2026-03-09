@@ -163,7 +163,7 @@ npm start
 
 ## Reporte de Cambios
 
-La persistencia entre rutas se resolvió centralizando las operaciones de autores en `AuthorsContext`, de forma que `/crear`, `/editar/[id]` y `/authors` consumen el mismo estado global y, tras cada operación `POST/PUT/DELETE`, se refresca el listado desde la API para mantener consistencia con el backend. En paralelo, la lógica de filtrado se integró directamente en la página `authors` aplicando métodos nativos de JavaScript sobre el arreglo (`filter` + `includes`) con comparación case-sensitive y un mensaje explícito cuando no hay coincidencias.
+La persistencia entre rutas se resolvió centralizando las operaciones de autores en `AuthorsContext`, de forma que `/crear`, `/editar/[id]` y `/authors` consumen el mismo estado global y, tras cada operación `POST/PUT/DELETE`, se refresca el listado desde la API para mantener consistencia con el backend. En paralelo, la lógica de filtrado se integró directamente en la página `authors` aplicando métodos nativos de JavaScript sobre el arreglo (`filter` + `includes`) con comparación case-insensitive y un mensaje explícito cuando no hay coincidencias.
 
 ---
 
